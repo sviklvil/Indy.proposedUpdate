@@ -1125,7 +1125,7 @@ function EVP_DecryptInit(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT
 function EVP_DecryptInit_ex(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte): TOpenSSL_C_INT; cdecl; external CLibCrypto;
 function EVP_DecryptUpdate(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in_1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
 function EVP_DecryptFinal(ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
-function EVP_DecryptFinal_ex(ctx: PEVP_MD_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
+function EVP_DecryptFinal_ex(ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
 function EVP_CipherInit(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
 function EVP_CipherInit_ex(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
 function EVP_CipherUpdate(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto;
@@ -1693,7 +1693,7 @@ function Load_EVP_DecryptInit(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_
 function Load_EVP_DecryptInit_ex(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte): TOpenSSL_C_INT; cdecl;
 function Load_EVP_DecryptUpdate(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in_1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 function Load_EVP_DecryptFinal(ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-function Load_EVP_DecryptFinal_ex(ctx: PEVP_MD_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+function Load_EVP_DecryptFinal_ex(ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 function Load_EVP_CipherInit(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 function Load_EVP_CipherInit_ex(ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 function Load_EVP_CipherUpdate(ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -2202,7 +2202,7 @@ var
   EVP_DecryptInit_ex: function (ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte): TOpenSSL_C_INT; cdecl = Load_EVP_DecryptInit_ex;
   EVP_DecryptUpdate: function (ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in_1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_DecryptUpdate;
   EVP_DecryptFinal: function (ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_DecryptFinal;
-  EVP_DecryptFinal_ex: function (ctx: PEVP_MD_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_DecryptFinal_ex;
+  EVP_DecryptFinal_ex: function (ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_DecryptFinal_ex;
   EVP_CipherInit: function (ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_CipherInit;
   EVP_CipherInit_ex: function (ctx: PEVP_CIPHER_CTX; const cipher: PEVP_CIPHER; impl: PENGINE; const key: PByte; const iv: PByte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_CipherInit_ex;
   EVP_CipherUpdate: function (ctx: PEVP_CIPHER_CTX; out_: PByte; out1: POpenSSL_C_INT; const in_: PByte; in1: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_CipherUpdate;
@@ -4145,7 +4145,7 @@ begin
   Result := EVP_DecryptFinal(ctx,outm,out1);
 end;
 
-function Load_EVP_DecryptFinal_ex(ctx: PEVP_MD_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+function Load_EVP_DecryptFinal_ex(ctx: PEVP_CIPHER_CTX; outm: PByte; out1: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   EVP_DecryptFinal_ex := LoadLibCryptoFunction('EVP_DecryptFinal_ex');
   if not assigned(EVP_DecryptFinal_ex) then
