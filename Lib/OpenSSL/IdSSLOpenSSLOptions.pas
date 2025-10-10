@@ -128,11 +128,11 @@ end;
 procedure TIdSSLOptions.SetMethod(const AValue: TIdSSLVersion);
 begin
   fMethod := AValue;
-  if AValue = sslvSSLv23 then begin
+{  if AValue = sslvSSLv23 then begin
     fSSLVersions := [sslvSSLv2,sslvSSLv3,sslvTLSv1,sslvTLSv1_1,sslvTLSv1_2];
   end else begin
     fSSLVersions := [AValue];
-  end;
+  end;}
 end;
 
 procedure TIdSSLOptions.SetSSLVersions(const AValue: TIdSSLVersions);

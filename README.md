@@ -1,6 +1,14 @@
 # Indy - Internet Direct - Proposed Update
 
-This is a proposed update to Indy adding support for OpenSSL 3.x. See Readme.OpenSSL for more information.
+THIS REPO IS NO LONGER MAINTAINED. This repo has been replaced by https://github.com/MWASoftware/IndySecOpenSSL.
+
+IndySecOpenSSL provides a new (optional) OpenSSL package separate from Indy's 
+"protocols" package and adds support for OpenSSL 3.0 and later. It may be used
+as an add-on the Indy 10.6 or the forthcoming Indy 10.7 releases.
+
+---
+
+Indy.ProposedUpdate was a proposed update to Indy adding support for OpenSSL 3.x. See Readme.OpenSSL for more information.
 
 Branch Status:
 * main (this branch) is the current published version. All other branches have archive status.
